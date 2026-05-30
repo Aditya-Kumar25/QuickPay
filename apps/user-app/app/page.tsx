@@ -1,12 +1,13 @@
+"use client"
+import { type JSX } from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
+import { Appbar } from "@repo/ui/Appbar";
 
-import styles from "./page.module.css";
-import { Button } from "@repo/ui/button";
-
-export default function Home() {
+export default function Page(): JSX.Element {
+  const session = useSession();
   return (
-    <div className={"text-bold text-3xl bg-red-500"}>
-    hello
-    <Button className={"px-4 py-2 rounded-lg bg-blue-600"}/>
-    </div>
+   <div>
+      <Appbar onSignin={signIn} onSignout={signOut} user={session.data?.user} />
+   </div>
   );
 }
